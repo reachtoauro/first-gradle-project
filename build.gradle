@@ -1,0 +1,32 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'hello.HelloWorld'
+// indicates that the build should resolve its dependencies from the Maven Central repository.
+repositories {
+    mavenCentral()
+}
+
+//compatibilties
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+//declare a single dependency for Joda Time. 
+//Specifically, you’re asking for (reading right to left) 
+//version 2.2 of the joda-time library, in the joda-time group
+dependencies {
+    //Required dependencies for compiling the project code, 
+    //but that will be provided at runtime by a container running the code
+    implementation "joda-time:joda-time:2.2" 
+    //used for compiling and running tests, but not required for building or running the project’s runtime code
+    testImplementation "junit:junit:4.12"
+}
+
+//specifies how the JAR file will be named
+//it will render gs-gradle-0.1.0.jar
+jar {
+    archiveBaseName = 'gs-gradle'
+    archiveVersion =  '0.1.0'
+}
+
+
